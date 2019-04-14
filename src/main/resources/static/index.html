@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title>Literally Canvas</title>
+    <link href="css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+</head>
+<body>
+<div class="items">
+    <div class="items__item">
+        <canvas id="original" width="100px" height="200px"></canvas>
+        <div class="items__item__label">Canvas Input</div>
+    </div>
+    <div class="items__item" style="display: none">
+        <canvas id="bounded" width="100px" height="100px"></canvas>
+        <div class="items__item__label">Segmented</div>
+    </div>
+    <div class="items__item items__item--mnist" style="display: none">
+        <canvas id="mnist" width="28px" height="28px"></canvas>
+        <div class="items__item__label">MNISIT Input</div>
+    </div>
+</div>
+<button id="submit" type="button">Guess !</button>
+<script src="js/mnistconverter.js"></script>
+</body>
+</html>
