@@ -709,7 +709,7 @@ document.getElementById('submit').onclick = function (e) {
     for (var counter = 0; counter < 28 * 28; counter++) {
         mnistArrayOfPixels[counter] = mnistdata[counter * 4 + 3];
     }
-    var url = 'http://localhost:8080/guess';
+    var url = '/guess';
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
