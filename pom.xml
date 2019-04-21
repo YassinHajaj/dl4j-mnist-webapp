@@ -48,6 +48,13 @@
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-core</artifactId>
             <version>${dl4j.version}</version>
+            <!-- EXCLUDE OPENCV TO LIGHTEN ARCHIVE-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.nd4j</groupId>
