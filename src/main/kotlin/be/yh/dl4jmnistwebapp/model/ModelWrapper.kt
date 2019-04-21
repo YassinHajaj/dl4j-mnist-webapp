@@ -7,6 +7,8 @@ import org.nd4j.linalg.factory.Nd4j
 import org.springframework.beans.factory.config.BeanDefinition.SCOPE_SINGLETON
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
+import java.nio.file.Files
+import java.nio.file.Paths
 import javax.annotation.PostConstruct
 
 @Service
@@ -16,8 +18,12 @@ class ModelWrapper {
 
     @PostConstruct
     fun loadModel() {
-        val modelPath = "src\\main\\resources\\model\\persisted-model"
-        model = ModelSerializer.restoreMultiLayerNetwork(modelPath)
+        val path = Files.walk(Paths.get("."))
+                .filter { path -> path.toFile().name.toString().contains("persisted-model") }
+                .map { path -> path.toAbsolutePath().toString() }
+                .findFirst()
+                .orElseThrow { RuntimeException("persisted-model could not be found ! Check the path") }
+        model = ModelSerializer.restoreMultiLayerNetwork(path)
     }
 
     fun guess(image: IntArray): Int {
