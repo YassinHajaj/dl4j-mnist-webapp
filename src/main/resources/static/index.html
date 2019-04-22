@@ -2,26 +2,58 @@
 <html>
 <head>
     <title>Literally Canvas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no"/>
 </head>
 <body>
-<div class="items">
-    <div class="items__item">
-        <canvas id="original" width="100px" height="200px"></canvas>
-        <div class="items__item__label">Canvas Input</div>
+<div>
+    <div class="items jumbotron">
+        <div>
+            <h1>MNIST & Kotlin</h1>
+        </div>
+        <br>
+        <div>
+            <h5>Let's connect on
+                <a href="https://www.linkedin.com/in/yassinhajaj/">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/600px-LinkedIn_logo_initials.png"
+                         alt="LinkedIn"
+                         width="20px"
+                         height="20px"
+                    >
+                </a> and
+                <a href="https://stackoverflow.com/users/5050667/yassin-hajaj">
+                    <img src="https://cdn4.iconfinder.com/data/icons/socialcones/508/StackOverflow-512.png"
+                         alt="LinkedIn"
+                         width="20px"
+                         height="20px"
+                    >
+                </a> !
+            </h5>
+        </div>
     </div>
-    <div class="items__item" style="display: none">
-        <canvas id="bounded" width="100px" height="100px"></canvas>
-        <div class="items__item__label">Segmented</div>
+    <div class="items item-with-canvas">
+        <div class="items__item">
+            <canvas class="img-responsive" id="original" width="100px" height="200px"></canvas>
+            <div class="items__item__label">Let me guess a digit ....</div>
+            <div class="items__item__label" id="result"></div>
+        </div>
+        <div class="items__item" style="display: none">
+            <canvas id="bounded" width="100px" height="100px"></canvas>
+            <div class="items__item__label">Segmented</div>
+        </div>
+        <div class="items__item items__item--mnist" style="display: none">
+            <canvas id="mnist" width="28px" height="28px"></canvas>
+            <div class="items__item__label">MNISIT Input</div>
+        </div>
     </div>
-    <div class="items__item items__item--mnist" style="display: none">
-        <canvas id="mnist" width="28px" height="28px"></canvas>
-        <div class="items__item__label">MNISIT Input</div>
+    <div class="items">
+        <button class="btn-primary btn-lg" id="submit" type="button">Guess</button>
+        <button class="btn-default btn-lg" id="clear" type="reset">Clear</button>
     </div>
 </div>
-<button id="submit" type="button">Guess !</button>
 <script src="js/mnistconverter.js"></script>
 </body>
 </html>

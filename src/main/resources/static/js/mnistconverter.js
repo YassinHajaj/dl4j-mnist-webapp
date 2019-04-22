@@ -702,6 +702,7 @@ var sketcher = new Atrament('#original');
 
 document.getElementById('submit').onclick = function (e) {
     e.preventDefault();
+    var resultLabel = document.getElementById('result');
     var mnistCtx = document.getElementById('mnist').getContext('2d');
     var mnistimgData = mnistCtx.getImageData(0, 0, 28, 28);
     var mnistdata = mnistimgData.data;
@@ -714,9 +715,8 @@ document.getElementById('submit').onclick = function (e) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             var guess = xhr.responseText;
-            console.log('guessed ' + guess)
-            var original = document.getElementById('original').getContext('2d');
-            original.clearRect(0, 0, original.width, original.height)
+            console.log('guessed ' + guess);
+            resultLabel.innerText = 'My guess is ' + guess + ' ! Am I right ?';
         }
     };
     xhr.open('POST', url, true);
@@ -728,5 +728,19 @@ document.getElementById('submit').onclick = function (e) {
     } catch (e) {
         console.error(e)
     }
+};
 
+function clearCanvas(context, canvas) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    var w = canvas.width;
+    canvas.width = 1;
+    canvas.width = w;
+}
+
+document.getElementById('clear').onclick = function (e) {
+    e.preventDefault();
+    var canvas = document.getElementById('original');
+    var ctx = canvas.getContext('2d');
+    clearCanvas(ctx, canvas);
+    document.getElementById('result').innerText = "";
 };
