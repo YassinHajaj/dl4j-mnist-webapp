@@ -706,6 +706,20 @@ document.getElementById('submit').onclick = function (e) {
     var mnistCtx = document.getElementById('mnist').getContext('2d');
     var mnistimgData = mnistCtx.getImageData(0, 0, 28, 28);
     var mnistdata = mnistimgData.data;
+    var isFilled = 0;
+
+    for (i = 0; i < mnistdata.length; ++i) {
+        if (mnistdata[i] !== 0) {
+            isFilled = 1;
+            break;
+        }
+    }
+
+    if (!isFilled) {
+        resultLabel.innerHTML = '<b>Please, fill in a digit before submitting !</b>'
+        return;
+    }
+
     var mnistArrayOfPixels = [];
     for (var counter = 0; counter < 28 * 28; counter++) {
         mnistArrayOfPixels[counter] = mnistdata[counter * 4 + 3];
@@ -716,7 +730,11 @@ document.getElementById('submit').onclick = function (e) {
         if (xhr.readyState === 4) {
             var guess = xhr.responseText;
             console.log('guessed ' + guess);
-            resultLabel.innerHTML = '<b>My guess is ' + guess + ' ! Am I right ?</b>';
+            if(/^\d$/.test(guess)) {
+                resultLabel.innerHTML = '<b>My guess is ' + guess + ' ! Am I right ?</b>';
+            } else {
+                resultLabel.innerHTML = '<b>Oups, something unexpected happened, would you mind retrying ?</b>'
+            }
         }
     };
     xhr.open('POST', url, true);
