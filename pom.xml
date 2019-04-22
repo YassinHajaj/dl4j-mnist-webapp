@@ -60,6 +60,13 @@
             <groupId>org.nd4j</groupId>
             <artifactId>nd4j-native-platform</artifactId>
             <version>${dl4j.version}</version>
+            <!-- EXCLUDE MKL_DNN TO LIGHTEN ARCHIVE-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>mkl-dnn-platform</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
