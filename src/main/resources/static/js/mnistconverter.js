@@ -716,7 +716,7 @@ document.getElementById('submit').onclick = function (e) {
         if (xhr.readyState === 4) {
             var guess = xhr.responseText;
             console.log('guessed ' + guess);
-            resultLabel.innerText = 'My guess is ' + guess + ' ! Am I right ?';
+            resultLabel.innerHTML = '<b>My guess is ' + guess + ' ! Am I right ?</b>';
         }
     };
     xhr.open('POST', url, true);
@@ -742,5 +742,5 @@ document.getElementById('clear').onclick = function (e) {
     var canvas = document.getElementById('original');
     var ctx = canvas.getContext('2d');
     clearCanvas(ctx, canvas);
-    document.getElementById('result').innerText = "";
+    document.getElementById('result').innerHTML = "";
 };
